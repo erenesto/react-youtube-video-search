@@ -1,0 +1,47 @@
+.collection {
+  border: 0;
+}
+.collection-item {
+  display: flex !important;
+  align-items: center !important;
+  cursor: pointer;
+  padding-left: 110px !important;
+}
+.collection-item:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+.collection-item .title {
+  font-weight: bold;
+  font-size: 12px !important;
+  line-height: 1.4;
+}
+.collection-item img {
+  border-radius: 4px;
+  position: absolute;
+  width: 80px;
+  overflow: hidden;
+  left: 15px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.card-image.iframe {
+  position: relative;
+  max-width: 100%;
+  height: 0;
+  overflow: hidden;
+  background: #dcddde;
+  padding-bottom: 56.25%;
+}
+
+.card-image.iframe iframe {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
