@@ -1,4 +1,4 @@
 # youtube video search app
 
-my first react app for training.
+react app for fun.
 you can try it with your youtube api key.
