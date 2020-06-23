@@ -5,9 +5,6 @@ import VideoList from './VideoList'
 import VideoDetail from './VideoDetail'
 import Spinner from './Spinner'
 
-//use your youtube api key here
-const API_KEY = ''
-
 class App extends React.Component {
   state = {
     videos: [],
@@ -15,19 +12,22 @@ class App extends React.Component {
     loading: false,
   }
 
-  onSearchInputSubmit = async inputText => {
-    this.setState({loading: true})
-    const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
-      params: {
-        part: 'snippet',
-        maxResults: 10,
-        key: API_KEY,
-        q: inputText,
-      },
-    })
+  onSearchInputSubmit = async (inputText) => {
+    this.setState({ loading: true })
+    const response = await axios.get(
+      'https://www.googleapis.com/youtube/v3/search',
+      {
+        params: {
+          part: 'snippet',
+          maxResults: 10,
+          key: process.env.REACT_APP_API_KEY,
+          q: inputText,
+        },
+      }
+    )
 
     const withoutChannels = await response.data.items.filter(
-      video => video.id.kind === 'youtube#video',
+      (video) => video.id.kind === 'youtube#video'
     )
 
     this.setState({
@@ -37,7 +37,7 @@ class App extends React.Component {
     })
   }
 
-  onVideoSelect = video => {
+  onVideoSelect = (video) => {
     this.setState({
       selectedVideo: video,
     })
@@ -47,7 +47,10 @@ class App extends React.Component {
     const showingContent = !this.state.loading ? (
       <div className="row">
         <div className="col s8">
-          <VideoDetail video={this.state.selectedVideo} loading={this.state.loading} />
+          <VideoDetail
+            video={this.state.selectedVideo}
+            loading={this.state.loading}
+          />
         </div>
         <div className="col s4">
           <VideoList
